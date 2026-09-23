@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小峰 — 个人作品集 | Portfolio</title>
+  <meta name="description" content="小峰的个人作品集：软件工程专业在读，关注 AI 辅助开发与大语言模型技术。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== 顶部导航 ===== -->
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">小峰<span class="logo-dot">.</span></a>
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="#hero" class="nav-link is-active" data-section="hero">首页</a>
+        <a href="#skills" class="nav-link" data-section="skills">技能</a>
+        <a href="#works" class="nav-link" data-section="works">作品</a>
+        <a href="#about" class="nav-link" data-section="about">关于</a>
+        <a href="#contact" class="nav-link" data-section="contact">联系</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== 首屏 Hero ===== -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <p class="hero-eyebrow"><span class="rule"></span>PORTFOLIO — 小峰 · 软件工程 / 2026</p>
+        <h1 class="hero-title">
+          <span class="line line-1">用代码</span>
+          <span class="line line-2">构建<em class="accent-word">智能</em>，</span>
+          <span class="line line-3">写出<em class="outline-word">产品</em>。</span>
+        </h1>
+        <div class="hero-foot">
+          <div class="hero-bio">
+            <p>你好，我是小峰 —— 一名<strong>软件工程</strong>专业学生，目前主要关注
+            <strong>AI 辅助开发</strong>与<strong>大语言模型</strong>技术，平时主要使用 Java 和 TypeScript 进行项目开发。</p>
+          </div>
+          <div class="hero-meta">
+            <p>SCROLL <span class="scroll-arrow">↓</span></p>
+            <p class="meta-dim">作品 04 则 · 持续更新</p>
+          </div>
+        </div>
+        <span class="hero-block hero-block-a" aria-hidden="true"></span>
+        <span class="hero-block hero-block-b" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <!-- ===== 技能方向 ===== -->
+    <section class="skills" id="skills">
+      <div class="section-head">
+        <p class="section-eyebrow">01 / SKILLS</p>
+        <h2 class="section-title">技能方向</h2>
+      </div>
+      <div class="skills-list">
+        <div class="skill-row reveal">
+          <span class="skill-no">01</span>
+          <div class="skill-body">
+            <h3>AI 辅助开发 · 大语言模型应用</h3>
+            <p>目前主要关注的方向。</p>
+          </div>
+          <span class="skill-tag">AI / LLM</span>
+        </div>
+        <div class="skill-row reveal">
+          <span class="skill-no">02</span>
+          <div class="skill-body">
+            <h3>Java · TypeScript</h3>
+            <p>平时主要使用 Java 和 TypeScript 进行项目开发。</p>
+          </div>
+          <span class="skill-tag">后端 / 语言</span>
+        </div>
+        <div class="skill-row reveal">
+          <span class="skill-no">03</span>
+          <div class="skill-body">
+            <h3>HTML / CSS · 前后端开发</h3>
+            <p>技能包含 HTML / CSS，并在持续学习前后端开发。</p>
+          </div>
+          <span class="skill-tag">WEB</span>
+        </div>
+        <div class="skill-row reveal">
+          <span class="skill-no">04</span>
+          <div class="skill-body">
+            <h3>数据可视化 · AI 应用构建</h3>
+            <p>持续学习数据可视化与 AI 应用构建。</p>
+          </div>
+          <span class="skill-tag">VIZ / APPS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 项目作品（由 JS 渲染） ===== -->
+    <section class="works" id="works">
+      <div class="section-head">
+        <p class="section-eyebrow">02 / SELECTED WORKS</p>
+        <h2 class="section-title">项目作品</h2>
+        <p class="section-note">以下作品按时间倒序排列 · 新增项目只需在 main.js 的数据表中追加一条。</p>
+      </div>
+      <div class="works-stack" id="worksStack"><!-- 项目区块由 js/main.js 生成 --></div>
+    </section>
+
+    <!-- ===== 关于我 ===== -->
+    <section class="about" id="about">
+      <div class="section-head">
+        <p class="section-eyebrow">03 / ABOUT</p>
+        <h2 class="section-title">关于我</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-side reveal">
+          <figure class="about-photo">
+            <img src="images/me.jpg" alt="小峰的个人照片">
+          </figure>
+          <p class="about-vertical">SOFTWARE ENGINEERING STUDENT</p>
+        </div>
+        <div class="about-copy reveal">
+          <p class="about-lede">我叫小峰，是一名软件工程专业学生，目前主要关注 AI 辅助开发与大语言模型技术。</p>
+          <p>平时主要使用 Java 和 TypeScript 进行项目开发，也在持续学习前后端开发、数据可视化和 AI 应用构建。</p>
+          <ul class="about-facts">
+            <li><span>专业</span>软件工程 · 广州软件学院（在读）</li>
+            <li><span>当前方向</span>AI 辅助开发、大语言模型应用</li>
+            <li><span>技能</span>Java、TypeScript、HTML/CSS</li>
+            <li><span>所在城市</span>中国 · 广州</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 联系方式 ===== -->
+    <section class="contact" id="contact">
+      <div class="section-head">
+        <p class="section-eyebrow">04 / CONTACT</p>
+        <h2 class="section-title">联系方式</h2>
+      </div>
+      <p class="contact-lede reveal">有想法、有项目、或者只是想聊聊技术？</p>
+      <a class="contact-mail reveal" href="mailto:xiaofeng@example.com">xiaofeng@example.com<span class="mail-arrow">→</span></a>
+      <div class="contact-links reveal">
+        <a href="https://github.com/xiaofeng-dev" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://xiaofeng.dev" target="_blank" rel="noopener">个人主页 ↗</a>
+        <span class="contact-wechat">微信：xiaofengzi</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 小峰 XIAOFENG — 用 HTML / CSS / JS 手工排版完成</p>
+    <a href="#hero" class="back-top">回到顶部 ↑</a>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
