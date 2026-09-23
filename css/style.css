@@ -13,11 +13,37 @@
   --accent-deep: #2f4a3e;    /* 辅助色块：墨绿 */
   --line: rgba(28, 27, 24, .22);
 
+  /* 主题相关语义变量（浅色默认值） */
+  --nav-bg: rgba(244, 241, 234, .88);   /* 导航栏底色 */
+  --chip-bg: rgba(244, 241, 234, .6);   /* 技术栈标签底色 */
+  --invert-bg: #1c1b18;                 /* 反色区块底色（联系 / 页脚 / 变体B） */
+  --invert-fg: #f4f1ea;                 /* 反色区块文字 */
+  --invert-soft: rgba(244, 241, 234, .75); /* 反色区块次级文字 */
+  --invert-line: rgba(244, 241, 234, .28); /* 反色区块分割线 */
+
   --serif: Georgia, "Times New Roman", "Songti SC", "Noto Serif SC", "SimSun", serif;
   --sans: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
 
   --gutter: clamp(20px, 5vw, 72px);
   --maxw: 1240px;
+}
+
+/* ---------- 深色主题 ---------- */
+[data-theme="dark"] {
+  --paper: #16150f;          /* 深色底 */
+  --paper-deep: #1f1e17;     /* 亮一档的深色 */
+  --ink: #ece7dc;            /* 浅色文字 */
+  --ink-soft: #a8a294;       /* 灰文字 */
+  --accent: #ff6b3d;         /* 主强调色：提亮的朱红 */
+  --accent-deep: #4f7a67;    /* 辅助色块：提亮的墨绿 */
+  --line: rgba(236, 231, 220, .22);
+
+  --nav-bg: rgba(22, 21, 15, .88);
+  --chip-bg: rgba(236, 231, 220, .08);
+  --invert-bg: #ece7dc;      /* 反色区块在深色下变为浅色 */
+  --invert-fg: #16150f;
+  --invert-soft: rgba(22, 21, 15, .75);
+  --invert-line: rgba(22, 21, 15, .28);
 }
 
 /* ---------- 基础 ---------- */
@@ -86,7 +112,7 @@ section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 100;
-  background: rgba(244, 241, 234, .88);
+  background: var(--nav-bg);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid transparent;
   transition: border-color .3s ease;
@@ -153,6 +179,33 @@ section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
 }
 .nav-toggle.is-open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
 .nav-toggle.is-open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+/* 右侧操作区：主题切换 + 汉堡 */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 17px;
+  line-height: 1;
+  transition: border-color .25s ease, color .25s ease, background .25s ease;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-icon { display: none; }
+/* 浅色：显示月亮（点击切到深色）；深色：显示太阳 */
+[data-theme="light"] .theme-icon-moon { display: inline; }
+[data-theme="dark"] .theme-icon-sun { display: inline; }
 
 /* =========================================================
    首屏 Hero
@@ -370,7 +423,7 @@ section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
   letter-spacing: .06em;
   padding: 5px 12px;
   border: 1px solid var(--line);
-  background: rgba(244, 241, 234, .6);
+  background: var(--chip-bg);
 }
 .work-date {
   font-size: 13px;
@@ -398,25 +451,25 @@ section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
   align-items: center;
 }
 .work--b .work-text {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--invert-bg);
+  color: var(--invert-fg);
   padding: clamp(28px, 4vw, 52px);
   position: relative;
   z-index: 2;
   margin-right: -8%;
 }
 .work--b .work-no {
-  -webkit-text-stroke-color: var(--paper);
+  -webkit-text-stroke-color: var(--invert-fg);
   opacity: .5;
 }
-.work--b .work-kicker { color: rgba(244, 241, 234, .75); }
-.work--b .work-desc { color: rgba(244, 241, 234, .8); }
+.work--b .work-kicker { color: var(--invert-soft); }
+.work--b .work-desc { color: var(--invert-soft); }
 .work--b .work-stack-list li {
-  border-color: rgba(244, 241, 234, .35);
+  border-color: var(--invert-line);
   background: transparent;
-  color: var(--paper);
+  color: var(--invert-fg);
 }
-.work--b .work-date { border-top-color: rgba(244, 241, 234, .3); }
+.work--b .work-date { border-top-color: var(--invert-line); }
 .work--b .work-figure { aspect-ratio: 1 / 1; }
 
 /* --- 变体 C：通栏大图 + 下方左右分栏文字 --- */
@@ -505,12 +558,12 @@ section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
 /* =========================================================
    联系方式
    ========================================================= */
-.contact { background: var(--ink); color: var(--paper); text-align: center; }
-.contact .section-head { border-bottom-color: rgba(244, 241, 234, .25); }
-.contact .section-title { color: var(--paper); }
+.contact { background: var(--invert-bg); color: var(--invert-fg); text-align: center; }
+.contact .section-head { border-bottom-color: var(--invert-line); }
+.contact .section-title { color: var(--invert-fg); }
 .contact-lede {
   font-size: clamp(16px, 2vw, 20px);
-  color: rgba(244, 241, 234, .7);
+  color: var(--invert-soft);
   margin: 0 0 clamp(24px, 4vw, 40px);
 }
 .contact-mail {
@@ -521,7 +574,7 @@ section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
   font-size: clamp(26px, 5.4vw, 64px);
   line-height: 1.2;
   letter-spacing: .01em;
-  color: var(--paper);
+  color: var(--invert-fg);
   border-bottom: 2px solid var(--accent);
   padding-bottom: 8px;
   transition: color .3s ease, gap .3s ease;
@@ -529,7 +582,7 @@ section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
 }
 .contact-mail:hover { color: var(--accent); gap: 28px; }
 .mail-arrow { color: var(--accent); }
-.contact-mail:hover .mail-arrow { color: var(--paper); }
+.contact-mail:hover .mail-arrow { color: var(--invert-fg); }
 
 .contact-links {
   margin-top: clamp(36px, 6vw, 60px);
@@ -542,7 +595,7 @@ section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
 }
 .contact-links a,
 .contact-links .contact-wechat {
-  color: rgba(244, 241, 234, .75);
+  color: var(--invert-soft);
   transition: color .25s ease;
 }
 .contact-links a:hover { color: var(--accent); }
@@ -552,9 +605,9 @@ section { padding: clamp(72px, 10vw, 140px) var(--gutter); }
    页脚
    ========================================================= */
 .site-footer {
-  background: var(--ink);
-  color: rgba(244, 241, 234, .55);
-  border-top: 1px solid rgba(244, 241, 234, .18);
+  background: var(--invert-bg);
+  color: var(--invert-soft);
+  border-top: 1px solid var(--invert-line);
   padding: 26px var(--gutter);
   display: flex;
   justify-content: space-between;

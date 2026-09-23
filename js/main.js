@@ -194,10 +194,54 @@ function initReveal() {
 }
 
 /* ---------------------------------------------------------
+   深浅色主题切换
+   优先读取 localStorage 记忆，其次跟随系统偏好，默认浅色。
+   --------------------------------------------------------- */
+const THEME_KEY = "theme";
+
+function getStoredTheme() {
+  try {
+    const t = localStorage.getItem(THEME_KEY);
+    if (t === "light" || t === "dark") return t;
+  } catch (e) { /* 隐私模式下忽略 */ }
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    return "dark";
+  }
+  return "light";
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  const btn = document.getElementById("themeToggle");
+  if (btn) {
+    btn.setAttribute("aria-pressed", String(theme === "dark"));
+    btn.setAttribute("title", theme === "dark" ? "切换到浅色主题" : "切换到深色主题");
+  }
+}
+
+/* 脚本位于 body 末尾，立即应用可避免主题闪烁 */
+const currentTheme = getStoredTheme();
+applyTheme(currentTheme);
+
+function initThemeToggle() {
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    const next =
+      document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) { /* 忽略存储失败 */ }
+  });
+}
+
+/* ---------------------------------------------------------
    启动
    --------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", function () {
   renderWorks();
   initNav();
   initReveal();
+  initThemeToggle();
 });
